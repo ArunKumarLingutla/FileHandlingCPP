@@ -36,6 +36,31 @@ void createCSV(const std::string& compName, std::vector<std::string>& headers) {
 	}
 }
 
+void createCSV(const std::string& path, std::vector<std::vector<std::string>>& listInput) {
+	std::ofstream file(path);
+	if (!file.is_open())
+	{
+		std::cerr << "Not Created";
+	}
+	else
+	{
+		
+		for (int i = 0; i < listInput.size(); i++)
+		{
+			for (int j = 0; j < listInput[i].size(); j++)
+			{
+				file << listInput[i][j];
+				if (j < listInput[i].size() - 1)
+				{
+					file << ",";
+				}
+			}
+			file << "\n";
+		}
+		file.close();
+		std::cout << "Created";
+	}
+}
 void addRecord(const std::string& compName,const std::vector<std::string>& data) {
 	std::string fileName = compName + ".csv";
 
